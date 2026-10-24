@@ -202,7 +202,64 @@ devops-lab/
 - [ ] Explain the two common uses of `mv`.
 - [ ] Build the practice directory structure and verify it with `ls -R`.
 
-**Progress note:** Lessons 1–3 have been introduced in the tutoring session. Mark the exercises complete only after you have personally run and understood them.
+## Lesson 4 — Linux filesystem hierarchy
+
+### The big idea
+
+Linux organizes files and directories under one top-level directory: `/`, called the **root directory**. This is different from `/root`, which is the home directory of the root administrator.
+
+### Important directories
+
+| Path | Purpose | DevOps relevance |
+|---|---|---|
+| `/` | Root of the filesystem hierarchy | Starting point for absolute paths |
+| `/home` | Home directories for regular users | User files and SSH keys |
+| `/root` | Root administrator's home directory | Administrative account files |
+| `/etc` | System and application configuration | Configuring services and applications |
+| `/var` | Variable data that changes during operation | Logs, caches, spool data |
+| `/var/log` | Common location for logs | Troubleshooting service and system failures |
+| `/tmp` | Temporary files | Short-lived working files |
+| `/usr/bin` | Many user commands and executable programs | Finding installed tools |
+| `/usr/lib` | Many libraries used by programs | Application dependencies |
+| `/opt` | Optional or third-party application software | Some manually installed tools |
+| `/dev` | Device interfaces represented as files | Inspecting disk and device nodes |
+| `/proc` | Virtual filesystem exposing process and kernel information | Inspecting running system state |
+
+### Explore safely
+
+These commands only display information; they do not modify system files:
+
+```bash
+ls /
+ls /home
+ls /etc
+ls /var
+ls /var/log
+ls /tmp
+ls /usr/bin | head
+ls /opt
+ls /dev | head
+ls /proc | head
+```
+
+Some directories may look empty or show different contents depending on your system and permissions. That is normal.
+
+### Remember
+
+- `/` is the filesystem root; `/root` is a user's home directory for the administrator.
+- `/etc` is primarily for configuration, not personal documents.
+- `/var/log` is a key place to look when diagnosing Linux service problems.
+- `/proc` is a virtual filesystem, not a normal collection of files stored permanently on disk.
+- `/dev` exposes device interfaces; do not modify or delete entries casually.
+
+### Practice and self-check
+
+- [ ] Run `ls /` and identify at least five directories.
+- [ ] Explain the difference between `/home` and `/root`.
+- [ ] Explain why `/etc` and `/var/log` matter to DevOps.
+- [ ] Explore `/proc` and explain why its contents differ from ordinary stored files.
+
+**Progress note:** Lesson 4 has been explained. Mark the exercises complete after running the commands and checking your understanding.
 
 ## How lesson notes are maintained
 
@@ -210,4 +267,4 @@ At the end of each lesson, update this README with the new concepts, commands, e
 
 ## Next lesson
 
-**Lesson 4 — Linux filesystem hierarchy:** understand what `/`, `/home`, `/etc`, `/var`, `/tmp`, `/usr`, `/opt`, `/dev`, and `/proc` are used for.
+**Lesson 5 — Linux users, groups, permissions, and `sudo`.**
