@@ -265,6 +265,61 @@ Some directories may look empty or show different contents depending on your sys
 
 At the end of each lesson, update this README with the new concepts, commands, examples, exercises, common errors, and progress. Keep commands safe and scoped to the practice lab; do not run unfamiliar destructive commands on the system.
 
+
+### Beginner explanation: what is a configuration file?
+
+A **configuration file** is a file that stores settings telling a program or the operating system how to behave. Think of game settings such as language, sound, or screen resolution: software needs to store choices somewhere. Linux services and applications also use settings files.
+
+Examples:
+
+| File | What it configures |
+|---|---|
+| `/etc/hostname` | The computer's hostname |
+| `/etc/fstab` | Filesystems and swap resources to mount or enable at startup |
+| `/etc/hosts` | Local hostname-to-address mappings |
+| `/etc/ssh/sshd_config` | SSH server settings, if the server is installed |
+
+You can safely read some settings with commands such as:
+
+```bash
+cat /etc/hostname
+cat /etc/hosts
+```
+
+Reading a configuration file is not the same as editing it. For now, inspect files only; we'll learn safe configuration changes later.
+
+### Why are there so many directories?
+
+Linux separates different kinds of information so the system is easier to organize, secure, maintain, and troubleshoot. Imagine an office building with personal workspaces, a settings room, activity records, and a temporary desk. Different areas have different jobs.
+
+- `/` is the top-level root of the filesystem; all the directories are organized beneath it.
+- `/home` is where regular users usually keep personal files.
+- `/root` is the home directory for the root administrator; it is not the same as `/`.
+- `/etc` commonly stores system-wide configuration.
+- `/var/log` is a common place for system and application logs.
+- `/tmp` is used for temporary files.
+- `/usr/bin` contains many installed commands and programs.
+- `/opt` is used for some optional or third-party applications.
+- `/dev` exposes device interfaces.
+- `/proc` is a virtual filesystem showing live process and kernel information rather than ordinary permanent files.
+
+### Beginner practice
+
+These commands only display information; they do not change system files:
+
+```bash
+cat /etc/hostname
+ls /
+ls /home
+ls /etc
+ls /var/log
+ls /tmp
+ls /usr/bin | head
+ls /proc | head
+```
+
+You do not need to memorize every path today. Start by remembering these four: `/home` = personal files, `/etc` = configuration, `/var/log` = logs, and `/tmp` = temporary files.
+
 ## Next lesson
 
 **Lesson 5 — Linux users, groups, permissions, and `sudo`.**
