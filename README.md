@@ -320,6 +320,121 @@ ls /proc | head
 
 You do not need to memorize every path today. Start by remembering these four: `/home` = personal files, `/etc` = configuration, `/var/log` = logs, and `/tmp` = temporary files.
 
+## Lesson 5 — Users, groups, permissions, and `sudo`
+
+### Why Linux has users and permissions
+
+A Linux system may be used by several people and services. User accounts identify which account is running a command or accessing a file. Groups let administrators manage access for teams. Permissions help control who can read, modify, or execute files and who can access directories.
+
+Think of a user as an account, a group as a team, and permissions as access rules.
+
+### Users
+
+A **user** is an account Linux uses to identify a person or service. Some accounts are for people; others run system services. The special administrator account is called `root` and has extensive privileges.
+
+Inspect your current account:
+
+```bash
+whoami
+id
+groups
+```
+
+- `whoami` prints the current username.
+- `id` displays the user ID (UID), primary group, and group memberships.
+- `groups` lists the groups associated with your account.
+
+### Groups
+
+A **group** is a collection of accounts. Instead of granting access to each team member separately, an administrator can grant access to a group. For example, a server might give a developers group access to application files without granting permission to edit all system configuration.
+
+The example is illustrative; actual groups and access depend on the system configuration.
+
+### File and directory permissions
+
+Linux permission types:
+
+| Symbol | Name | For a file | For a directory |
+|---|---|---|---|
+| `r` | Read | View file contents | List directory entries |
+| `w` | Write | Modify file contents | Create, rename, or remove entries, subject to other rules |
+| `x` | Execute | Run a program or script | Traverse/access the directory |
+
+Permissions are commonly shown for three categories:
+
+- **User/owner (`u`)** — the file's owner.
+- **Group (`g`)** — the file's assigned group.
+- **Others (`o`)** — other users.
+
+Example:
+
+```text
+-rw-r--r-- 1 kali kali 120 Oct 25 notes.txt
+```
+
+The first section, `-rw-r--r--`, indicates a regular file and its permissions:
+
+- `-`: regular file (a directory typically begins with `d`).
+- `rw-`: owner can read and write.
+- `r--`: group can read but not write.
+- `r--`: others can read but not write.
+
+Your own output will differ depending on the file and account.
+
+Inspect files in your home directory:
+
+```bash
+cd ~
+ls -l
+```
+
+### Elevated privileges: `sudo`
+
+`sudo` allows an authorized user to run a command with elevated privileges, commonly as the administrator. System-wide installation and configuration changes often require this.
+
+Example syntax (do not run an installation just for practice):
+
+```bash
+sudo apt install PACKAGE_NAME
+```
+
+Use elevated privileges only when needed. Read a command before running it, especially when it includes `sudo`.
+
+### `chmod` and `chown`
+
+- `chmod` changes permissions.
+- `chown` changes the owner and optionally the group.
+
+Example of adding execute permission for the file's owner:
+
+```bash
+chmod u+x script.sh
+```
+
+This is an example for a file you own, not a command to run on system files. We'll practise permission changes in a controlled lab later.
+
+### Safe beginner practice
+
+Run these read-only inspection commands one at a time:
+
+```bash
+whoami
+id
+groups
+cd ~
+ls -l
+```
+
+### Check your understanding
+
+- [ ] Explain the difference between a user and a group.
+- [ ] Explain what `r`, `w`, and `x` mean for files.
+- [ ] Read a permission string such as `-rw-r--r--`.
+- [ ] Explain what `sudo`, `chmod`, and `chown` do.
+- [ ] Run the inspection commands and review your output.
+
+**Progress note:** Lesson 5 has been introduced. Mark exercises complete only after you have run the commands and can explain the results.
+
 ## Next lesson
 
-**Lesson 5 — Linux users, groups, permissions, and `sudo`.**
+**Lesson 6 — Linux permissions in practice: reading `rwx`, safe use of `chmod`, and understanding permission numbers.**
